@@ -19,3 +19,13 @@ The dataset used in this marketing analysis project is a comprehensive collectio
 This rich and diverse dataset serves as the foundation for conducting in-depth marketing analysis, allowing for the exploration of conversion patterns, user behaviors, and the impact of different factors on marketing campaign performance.
 
 
+## Analysis 
+
+###  1. Conversion Rate Analysis: 
+     Question: What is the overall conversion rate for the marketing campaign based on the data provided?
+
+SELECT ROUND(converted_customers::NUMERIC/total_customers::NUMERIC * 100.0, 2) || ' %' AS conversion_rate
+FROM (
+	SELECT COUNT(*) AS total_customers,
+		   SUM(CASE WHEN converted = 'TRUE' THEN 1 ELSE 0 END) AS converted_customers
+	FROM marketing.ca) x;
