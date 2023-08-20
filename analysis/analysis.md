@@ -53,7 +53,8 @@ using the above quesry, we can observe the trend in conversion `year` wise as we
 
 ![query-1](https://github.com/SaibalPatraDS/Market-Analysis-using-PSQL/assets/102281722/6b442713-8284-4e46-97b2-7ac05718f0cf)
 
-
+-----------------------------------------------------------------
+---------------------------------------------------------
 
 ### 2. Marketing Channel Effectiveness:
     Question: Which marketing channels in the dataset have the highest and lowest conversion rates?
@@ -89,6 +90,8 @@ This SQL query calculates and ranks marketing channels by conversion rate, then 
 
 ![Screenshot 2023-08-20 125132](https://github.com/SaibalPatraDS/Market-Analysis-using-PSQL/assets/102281722/7362f632-340f-4d72-aeba-e7c79e4e991c)
 
+-----------------------------------------------------------------
+-----------------------------------------------------------------
 
 ### 3. A/B Testing:
     Question: Based on the data, did the "personalization" variant have a higher conversion rate 
@@ -110,7 +113,8 @@ This SQL query calculates the conversion rates for different advertising techniq
 
 ![Screenshot 2023-08-20 125404](https://github.com/SaibalPatraDS/Market-Analysis-using-PSQL/assets/102281722/dcd343fe-cb29-4b41-9142-6c3880a93259)
 
-
+-----------------------------------------------------------------
+-----------------------------------------------------------------
 
 ### 4. Retention Analysis:
 	Question: Can we determine the retention rate based on the provided data? 
@@ -135,6 +139,7 @@ This SQL code calculates the retention rates for different subscribing channels 
 
 ![query-4](https://github.com/SaibalPatraDS/Market-Analysis-using-PSQL/assets/102281722/9dba0945-8695-4aa4-b8fb-f8ef6ae3f378)
 
+-----------------------------------------------------------------
 
 ```sql
 --- Retention based on language preferred
@@ -158,6 +163,7 @@ This SQL query calculates the retention rates based on preferred language, compa
 
 ![query-4 2](https://github.com/SaibalPatraDS/Market-Analysis-using-PSQL/assets/102281722/7c043b02-bda5-4161-bf48-43d5d5ca0a12)
 
+-----------------------------------------------------------------
 
 ```sql
 --- Retention based on language displayed
@@ -182,6 +188,10 @@ This SQL query calculates the retention rates based on the language displayed to
 
 
 **Conclusion** --> We can clearly observed `language preference` doesn't matter that much for this customers. There is huge jump in `conversion rate` when the marketing process doesn't market in preferred language. 
+
+
+----------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------------
 
 
 ### 5. Churn Analysis:
@@ -217,6 +227,7 @@ This SQL code calculates the churn rates for different age groups and preferred 
 As per the result, we can comment that there is more cancellation done by people whose preferred language is `German`. 
 
 
+----------------------------------------------------------------------------------------------------------------------------------
 
 
 
@@ -247,6 +258,7 @@ This SQL code calculates the churn rates for different age groups. It ranks thes
 
 ![image](https://github.com/SaibalPatraDS/Market-Analysis-using-PSQL/assets/102281722/195d2e78-3d7c-46e5-b7b9-af026edc8cad)
 
+----------------------------------------------------------------------------------------------------------------------------------
 
 
 
