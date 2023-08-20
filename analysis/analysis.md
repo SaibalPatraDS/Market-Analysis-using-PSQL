@@ -217,6 +217,9 @@ This SQL code calculates the churn rates for different age groups and preferred 
 As per the result, we can comment that there is more cancellation done by people whose preferred language is `German`. 
 
 
+
+
+
  -----> **taking `age-group` in consideration only**
 
 ```sql
@@ -243,6 +246,8 @@ WHERE drnk = 1;
 This SQL code calculates the churn rates for different age groups. It ranks these age groups by churn rate using dense ranking, considering all age groups collectively. The final result selects the age group with the highest churn rate, providing insights into which age group experiences the highest churn in the dataset. The `language_preferred` column appears to be commented out and not used in this specific query.
 
 ![image](https://github.com/SaibalPatraDS/Market-Analysis-using-PSQL/assets/102281722/195d2e78-3d7c-46e5-b7b9-af026edc8cad)
+
+
 
 
 -----> **Taking `preferred-language` into consideration only
@@ -273,4 +278,11 @@ This SQL code calculates the churn rates for different language preferences. It 
 ![image](https://github.com/SaibalPatraDS/Market-Analysis-using-PSQL/assets/102281722/6f43ed66-83b6-4a66-bc2a-5107a6a2e321)
 
 **Conclusion** - `German` preferred users are mostly cancelling the subscriptions.
+
+
+
+
+
+
+
 
