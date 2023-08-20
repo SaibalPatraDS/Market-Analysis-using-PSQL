@@ -32,4 +32,26 @@ FROM (
 		   SUM(CASE WHEN converted = 'TRUE' THEN 1 ELSE 0 END) AS converted_customers
 	FROM marketing.ca) x;
 ```
+![image](https://github.com/SaibalPatraDS/Market-Analysis-using-PSQL/assets/102281722/efb44c84-303f-4bc9-aab1-55cf7e2e2c5a)
+
+
+**More Insights**
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
