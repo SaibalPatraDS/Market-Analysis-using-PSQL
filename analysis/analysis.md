@@ -215,7 +215,8 @@ WHERE drnk = 1;
 
 As per the result, we can comment that there is more cancellation done by people whose preferred language is `German`. 
 
-**taking `age-group` in consideration only**
+
+ -----> **taking `age-group` in consideration only**
 
 ```sql
 WITH churn AS (
