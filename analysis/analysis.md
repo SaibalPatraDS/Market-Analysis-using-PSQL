@@ -154,6 +154,8 @@ ORDER BY retention_rate DESC;
 This SQL query calculates the retention rates based on preferred language, comparing the language preferred by users with the language displayed. It computes the retention rate by dividing the number of retained customers by the total number of customers who preferred each language. The results are sorted in descending order of retention rates, providing insights into the impact of language preferences on customer retention.
 
 
+![Screenshot 2023-08-20 130314](https://github.com/SaibalPatraDS/Market-Analysis-using-PSQL/assets/102281722/774aad14-626d-49bc-a976-31b046fc921f)
+
 ![query-4 2](https://github.com/SaibalPatraDS/Market-Analysis-using-PSQL/assets/102281722/6a3782f1-a0d4-4422-8d2d-c1601195bfb4)
 
 ```sql
@@ -172,12 +174,13 @@ ORDER BY retention_rate DESC;
 
 This SQL query calculates the retention rates based on the language displayed to users. It compares the displayed language with user preferences, then computes the retention rate by dividing the number of retained customers by the total number of customers for each displayed language. The results are sorted in descending order of retention rates, providing insights into how displaying content in different languages impacts customer retention.
 
+![Screenshot 2023-08-20 130212](https://github.com/SaibalPatraDS/Market-Analysis-using-PSQL/assets/102281722/fe292858-f63e-4a32-b7ed-aecc27258378)
 
 ![query-4 3](https://github.com/SaibalPatraDS/Market-Analysis-using-PSQL/assets/102281722/7a5c8cf4-1a75-4a13-96e9-dec844e1b70f)
 
 
 
-
+**Conclusion** --> We can clearly observed `language preference` doesn't matter that much for this customers. There is huge jump in `conversion rate` when the marketing process doesn't market in preferred language. 
 
 
 
