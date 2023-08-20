@@ -156,7 +156,8 @@ This SQL query calculates the retention rates based on preferred language, compa
 
 ![Screenshot 2023-08-20 130314](https://github.com/SaibalPatraDS/Market-Analysis-using-PSQL/assets/102281722/774aad14-626d-49bc-a976-31b046fc921f)
 
-![query-4 2](https://github.com/SaibalPatraDS/Market-Analysis-using-PSQL/assets/102281722/6a3782f1-a0d4-4422-8d2d-c1601195bfb4)
+![query-4 2](https://github.com/SaibalPatraDS/Market-Analysis-using-PSQL/assets/102281722/7c043b02-bda5-4161-bf48-43d5d5ca0a12)
+
 
 ```sql
 --- Retention based on language displayed
