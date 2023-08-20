@@ -50,6 +50,7 @@ ORDER BY day;
 ```
 
 using the above quesry, we can observe the trend in conversion `year` wise as well as `day` wise. 
+
 ![query-1](https://github.com/SaibalPatraDS/Market-Analysis-using-PSQL/assets/102281722/6b442713-8284-4e46-97b2-7ac05718f0cf)
 
 
