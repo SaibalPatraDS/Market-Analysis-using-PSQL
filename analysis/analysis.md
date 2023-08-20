@@ -90,9 +90,25 @@ This SQL query calculates and ranks marketing channels by conversion rate, then 
 ![Screenshot 2023-08-20 125132](https://github.com/SaibalPatraDS/Market-Analysis-using-PSQL/assets/102281722/7362f632-340f-4d72-aeba-e7c79e4e991c)
 
 
+### 3. A/B Testing:
+    Question: Based on the data, did the "personalization" variant have a higher conversion rate 
+          than the "non-personalization" variant?
 
+```sql
+SELECT variant AS ads_technique,
+       ROUND(100.0 * converted_customers/total_customers, 2) AS conversion_rate
+FROM (
+	SELECT variant,
+		   COUNT(*) AS total_customers,
+		   SUM(CASE WHEN converted = 'TRUE' THEN 1 ELSE 0 END) AS converted_customers
+	FROM marketing.ca
+	GROUP BY variant) x
+ORDER BY conversion_rate DESC;
+```
 
+This SQL query calculates the conversion rates for different advertising techniques (variants) by dividing the number of converted customers by the total number of customers in the dataset. It presents the results in descending order of conversion rates, providing insights into the effectiveness of each advertising variant.
 
+![Screenshot 2023-08-20 125404](https://github.com/SaibalPatraDS/Market-Analysis-using-PSQL/assets/102281722/dcd343fe-cb29-4b41-9142-6c3880a93259)
 
 
 
