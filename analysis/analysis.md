@@ -37,6 +37,21 @@ FROM (
 
 **More Insights**
 
+```sql
+SELECT EXTRACT(DAY FROM date_served) AS day,
+       EXTRACT(YEAR FROM date_served) AS year,
+       SUM(CASE WHEN converted = 'TRUE' THEN 1 ELSE 0 END) AS converted_customers,
+	   COUNT(*) AS customers,
+	   ROUND(100 * SUM(CASE WHEN converted = 'TRUE' THEN 1 ELSE 0 END)::NUMERIC/COUNT(*), 2) AS conversion_rate
+FROM marketing.ca
+WHERE date_served IS NOT NULL
+GROUP BY year,day
+ORDER BY day;
+```
+
+using the above quesry, we can observe the trend in conversion `year` wise as well as `day` wise. 
+![query-1](https://github.com/SaibalPatraDS/Market-Analysis-using-PSQL/assets/102281722/6b442713-8284-4e46-97b2-7ac05718f0cf)
+
 
 
 
