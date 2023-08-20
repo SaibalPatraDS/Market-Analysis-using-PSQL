@@ -242,3 +242,30 @@ WHERE drnk = 1;
 ![image](https://github.com/SaibalPatraDS/Market-Analysis-using-PSQL/assets/102281722/195d2e78-3d7c-46e5-b7b9-af026edc8cad)
 
 
+-----> **Taking `preferred-language` into consideration only
+
+```sql
+WITH churn AS (
+	SELECT --age_group,
+		   language_preferred,
+		   ROUND(100.0 * churn/total_customer, 2) AS churn_rate,
+		   DENSE_RANK() OVER(ORDER BY 100.0 * churn/total_customer DESC) AS drnk
+	FROM (
+		SELECT --age_group,
+			   language_preferred,
+			   SUM(CASE WHEN date_canceled IS NOT NULL THEN 1 ELSE 0 END) AS churn,
+			   COUNT(*) AS total_customer
+		FROM marketing.ca
+		GROUP BY language_preferred) x)
+
+SELECT --age_group,
+       language_preferred,
+	   churn_rate
+FROM churn
+WHERE drnk = 1;
+```
+
+![image](https://github.com/SaibalPatraDS/Market-Analysis-using-PSQL/assets/102281722/6f43ed66-83b6-4a66-bc2a-5107a6a2e321)
+
+**Conclusion** - `German` preferred users are mostly cancelling the subscriptions.
+
