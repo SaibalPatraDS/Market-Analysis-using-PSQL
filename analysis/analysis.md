@@ -55,11 +55,39 @@ using the above quesry, we can observe the trend in conversion `year` wise as we
 
 
 
+### 2. Marketing Channel Effectiveness:
+    Question: Which marketing channels in the dataset have the highest and lowest conversion rates?
+
+```sql
+WITH marketing_channels_rate AS (
+	SELECT marketing_channel,
+		   SUM(CASE WHEN converted = 'TRUE' THEN 1 ELSE 0 END) AS converted_customer,
+		   COUNT(*) AS total_customers
+	FROM marketing.ca
+	WHERE marketing_channel IS NOT NULL
+	GROUP BY marketing_channel),
+conversion_rate AS(
+	SELECT marketing_channel,
+		   ROUND(100.0 * converted_customer/total_customers , 2) AS conversion_rate
+	FROM marketing_channels_rate
+	ORDER BY conversion_rate DESC),
+ranking AS(
+	SELECT marketing_channel,
+		   RANK() OVER(ORDER BY conversion_rate DESC) AS rnk
+	FROM conversion_rate)
+
+SELECT marketing_channel,
+       CASE WHEN rnk = 1 THEN 'Highest Marketing Channel'
+            WHEN rnk = 5 THEN 'Lowest Marketing Channel' END AS channel_types
+FROM ranking
+WHERE CASE WHEN rnk = 1 THEN 'Highest Marketing Channel'
+            WHEN rnk = 5 THEN 'Lowest Marketing Channel' END IS NOT NULL;
+```
+
+This SQL query calculates and ranks marketing channels by conversion rate, then identifies the highest and fifth-highest performing channels, categorizing them accordingly as 'Highest Marketing Channel' and 'Lowest Marketing Channel' for further analysis.
 
 
-
-
-
+![Screenshot 2023-08-20 125132](https://github.com/SaibalPatraDS/Market-Analysis-using-PSQL/assets/102281722/7362f632-340f-4d72-aeba-e7c79e4e991c)
 
 
 
