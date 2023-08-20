@@ -112,6 +112,46 @@ This SQL query calculates the conversion rates for different advertising techniq
 
 
 
+### 4. Retention Analysis:
+	Question: Can we determine the retention rate based on the provided data? 
+          How does it vary by subscribing channel and language preferred?
+
+```sql
+--- Retention based on subscribing channel
+
+SELECT subscribing_channel,
+       ROUND(100.0 * retention/total_customer, 2) AS retention_rate
+FROM (
+	SELECT subscribing_channel,
+		   COUNT(is_retained) AS total_customer,
+		   SUM(CASE WHEN is_retained = 'TRUE' THEN 1 ELSE 0 END) AS retention
+	FROM marketing.ca
+	WHERE subscribing_channel IS NOT NULL
+	GROUP BY subscribing_channel) x
+ORDER BY retention_rate DESC;
+```
+This SQL code calculates the retention rates for different subscribing channels by dividing the number of retained customers by the total number of customers who subscribed through each channel. The results are presented in descending order of retention rates, providing insights into the effectiveness of each subscribing channel in retaining customers.
+
+
+![query-4](https://github.com/SaibalPatraDS/Market-Analysis-using-PSQL/assets/102281722/9dba0945-8695-4aa4-b8fb-f8ef6ae3f378)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
