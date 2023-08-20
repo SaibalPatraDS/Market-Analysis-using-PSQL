@@ -24,8 +24,12 @@ This rich and diverse dataset serves as the foundation for conducting in-depth m
 ###  1. Conversion Rate Analysis: 
      Question: What is the overall conversion rate for the marketing campaign based on the data provided?
 
+     
+```sql
 SELECT ROUND(converted_customers::NUMERIC/total_customers::NUMERIC * 100.0, 2) || ' %' AS conversion_rate
 FROM (
 	SELECT COUNT(*) AS total_customers,
 		   SUM(CASE WHEN converted = 'TRUE' THEN 1 ELSE 0 END) AS converted_customers
 	FROM marketing.ca) x;
+```
+
