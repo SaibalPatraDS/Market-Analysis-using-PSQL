@@ -136,9 +136,25 @@ This SQL code calculates the retention rates for different subscribing channels 
 ![query-4](https://github.com/SaibalPatraDS/Market-Analysis-using-PSQL/assets/102281722/9dba0945-8695-4aa4-b8fb-f8ef6ae3f378)
 
 
+```sql
+--- Retention based on language preferred
+
+SELECT language,
+       ROUND(100.0 * retention/total_customers, 2) AS retention_rate
+FROM (
+	SELECT language_preferred AS language,
+	--        SUM(CASE WHEN language_preferred = language_displayed THEN 1 ELSE 0 END) AS language_variation,
+		   COUNT(language_preferred) AS total_customers,
+		   SUM(CASE WHEN is_retained = 'TRUE' THEN 1 ELSE 0 END) retention 
+	FROM marketing.ca
+	GROUP BY language_preferred) x
+ORDER BY retention_rate DESC;
+```
+
+This SQL query calculates the retention rates based on preferred language, comparing the language preferred by users with the language displayed. It computes the retention rate by dividing the number of retained customers by the total number of customers who preferred each language. The results are sorted in descending order of retention rates, providing insights into the impact of language preferences on customer retention.
 
 
-
+![query-4 2](https://github.com/SaibalPatraDS/Market-Analysis-using-PSQL/assets/102281722/6a3782f1-a0d4-4422-8d2d-c1601195bfb4)
 
 
 
