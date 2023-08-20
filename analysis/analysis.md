@@ -372,5 +372,53 @@ FROM funnel_steps;
 This SQL code calculates and presents a marketing conversion funnel with three steps: 'Viewed Ad,' 'Subscribed,' and 'Retained.' It calculates the number of users at each step and the percentage of users who progress to the next step. The query first aggregates user data related to these steps, then calculates the percentage for each step. The results provide insights into user progression through the marketing funnel, helping assess the effectiveness of each conversion step in the user journey.
 
 ![image](https://github.com/SaibalPatraDS/Market-Analysis-using-PSQL/assets/102281722/151888ce-935f-4932-bd18-de743e540282)
-![image](https://github.com/SaibalPatraDS/Market-Analysis-using-PSQL/assets/102281722/5263a87d-2358-4e9f-b049-d02bc5712971)
 
+
+----------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------------
+
+
+### 9. Calculate Average Time to Cancel:
+      Question: What is the average time it takes for users to cancel their subscription after subscribing?
+
+```sql
+SELECT age_group, 
+       ROUND(AVG(date_canceled - date_subscribed),0) AS days_before_cancelation
+-- 	   AVG(AGE(date_canceled, date_subscribed)) AS col1
+FROM marketing.ca
+WHERE date_canceled >= date_subscribed
+GROUP BY age_group
+ORDER BY days_before_cancelation DESC;
+```
+
+
+This SQL query calculates the average number of days it takes for users in different age groups to cancel their subscriptions after subscribing. It filters for cases where the cancellation date is greater than or equal to the subscription date, groups the data by age group, and then calculates the average number of days before cancellation. The results are presented in descending order of days before cancellation for each age group. This analysis provides insights into the subscription duration patterns among different age groups.
+
+
+
+![query-9](https://github.com/SaibalPatraDS/Market-Analysis-using-PSQL/assets/102281722/450aa096-7ff7-4cde-bb0e-ae1a7c27c610)
+
+
+----------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------------
+
+
+### 10. Calculate Cumulative Conversions:
+	Question: Create a cumulative sum of conversions over time to visualize how they accumulate.
+  
+```sql
+SELECT DISTINCT date_served,
+       SUM(CASE WHEN converted = 'TRUE' THEN 1
+		        ELSE 0
+		  END) OVER(ORDER BY date_served)AS subcribers
+FROM marketing.ca
+WHERE date_served IS NOT NULL
+ORDER BY date_served;
+```
+
+This SQL query retrieves distinct dates when marketing campaigns were served (`date_served`) and calculates the cumulative number of subscribers (users who converted) over time. The `SUM` function with the `OVER` clause is used to calculate the cumulative sum of subscribers ordered by the `date_served`. The results provide a time series view of subscriber growth, showing how the number of subscribers increases over the specified period.
+
+
+![query-10](https://github.com/SaibalPatraDS/Market-Analysis-using-PSQL/assets/102281722/0d4bb3ce-17b7-4e96-b713-5e84a26972d8)
+
+**Conclusion** - The growth in the `subscribers` count can be clearly seen.
