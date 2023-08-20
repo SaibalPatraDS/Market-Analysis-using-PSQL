@@ -293,6 +293,13 @@ This SQL code calculates the churn rates for different language preferences. It 
 
 
 
+----------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------------
+
+
+### 7. Language Preference Impact:
+	Question: Is there evidence in the data that displaying content in a user's preferred language 
+          impacts conversion rates positively?
 
 
 
