@@ -209,6 +209,7 @@ FROM churn
 WHERE drnk = 1;
 ```
 
+This SQL code calculates the churn rates for different age groups and preferred languages. It ranks these groups by churn rate using dense ranking within each age group. The final result selects the age group, preferred language, and churn rate for the top-ranking group with the highest churn rate within each age group. This query provides insights into which age group and language preference combination has the highest churn rate in the dataset.
 
 ![Screenshot 2023-08-20 131253](https://github.com/SaibalPatraDS/Market-Analysis-using-PSQL/assets/102281722/f80bb8a7-402f-494c-8c28-fd3bf689df98)
 
@@ -239,6 +240,8 @@ FROM churn
 WHERE drnk = 1;
 ```
 
+This SQL code calculates the churn rates for different age groups. It ranks these age groups by churn rate using dense ranking, considering all age groups collectively. The final result selects the age group with the highest churn rate, providing insights into which age group experiences the highest churn in the dataset. The `language_preferred` column appears to be commented out and not used in this specific query.
+
 ![image](https://github.com/SaibalPatraDS/Market-Analysis-using-PSQL/assets/102281722/195d2e78-3d7c-46e5-b7b9-af026edc8cad)
 
 
@@ -264,6 +267,8 @@ SELECT --age_group,
 FROM churn
 WHERE drnk = 1;
 ```
+
+This SQL code calculates the churn rates for different language preferences. It ranks these language preferences by churn rate using dense ranking, considering all language preferences collectively. The final result selects the language preference with the highest churn rate, providing insights into which language preference has the highest churn rate in the dataset. The `age_group` column appears to be commented out and not used in this specific query.
 
 ![image](https://github.com/SaibalPatraDS/Market-Analysis-using-PSQL/assets/102281722/6f43ed66-83b6-4a66-bc2a-5107a6a2e321)
 
