@@ -184,9 +184,33 @@ This SQL query calculates the retention rates based on the language displayed to
 **Conclusion** --> We can clearly observed `language preference` doesn't matter that much for this customers. There is huge jump in `conversion rate` when the marketing process doesn't market in preferred language. 
 
 
+### 5. Churn Analysis:
+	Question: Are there any patterns in user cancellations (churn) based on age group or 
+          language preference from the data provided?
+
+```sql
+WITH churn AS (
+	SELECT age_group,
+		   language_preferred,
+		   ROUND(100.0 * churn/total_customer, 2) AS churn_rate,
+		   DENSE_RANK() OVER(PARTITION BY age_group ORDER BY 100.0 * churn/total_customer DESC) AS drnk
+	FROM (
+		SELECT age_group,
+			   language_preferred,
+			   SUM(CASE WHEN date_canceled IS NOT NULL THEN 1 ELSE 0 END) AS churn,
+			   COUNT(*) AS total_customer
+		FROM marketing.ca
+		GROUP BY age_group, language_preferred) x)
+
+SELECT age_group,
+       language_preferred,
+	   churn_rate
+FROM churn
+WHERE drnk = 1;
+```
 
 
+![Screenshot 2023-08-20 131253](https://github.com/SaibalPatraDS/Market-Analysis-using-PSQL/assets/102281722/f80bb8a7-402f-494c-8c28-fd3bf689df98)
 
 
-
-
+As per the result, we can comment that there is more cancellation done by people whose preferred language is `German`. 
