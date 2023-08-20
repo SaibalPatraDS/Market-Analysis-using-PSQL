@@ -298,8 +298,41 @@ This SQL code calculates the churn rates for different language preferences. It 
 
 
 ### 7. Language Preference Impact:
-	Question: Is there evidence in the data that displaying content in a user's preferred language 
-          impacts conversion rates positively?
+      Question: Is there evidence in the data that displaying content in a user's preferred language 
+                impacts conversion rates positively?
+
+
+```sql
+WITH impact AS(
+	SELECT language_preferred,
+		   language_displayed,	
+		   SUM(CASE WHEN converted = 'TRUE' THEN 1 ELSE 0 END) AS converted,
+		   COUNT(*) AS total_customer,
+		   ROUND(100.0 * SUM(CASE WHEN converted = 'TRUE' THEN 1 ELSE 0 END)/COUNT(*), 2) AS conversion_rate
+	FROM marketing.ca
+	GROUP BY language_preferred, language_displayed)
+
+SELECT 'preferred language' AS type,
+       ROUND(AVG(conversion_rate), 2) AS avg_conversion_rate
+FROM impact
+WHERE language_preferred = language_displayed
+UNION
+SELECT 'displayed language' AS type,
+       ROUND(AVG(conversion_rate), 2) AS avg_conversion_rate
+FROM impact
+WHERE language_preferred != language_displayed
+ORDER BY avg_conversion_rate DESC;
+```
+
+This SQL code calculates and compares the average conversion rates based on whether users preferred the displayed language ('preferred language') or encountered content in a different language ('displayed language'). It calculates the conversion rates for both scenarios, then presents the results in descending order of average conversion rates. This query helps evaluate the impact of matching user preferences with displayed content language on conversion rates, providing insights into the effectiveness of language personalization in marketing campaigns.
+
+
+![image](https://github.com/SaibalPatraDS/Market-Analysis-using-PSQL/assets/102281722/e80ec9ed-fd7a-4390-9d92-0ca1e2f7b696)
+
+**Conclusion** - No of subscribers **`increases`** when the ads are run in `preferred language` over random language.
+
+
+
 
 
 
