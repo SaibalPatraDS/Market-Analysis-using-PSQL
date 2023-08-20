@@ -332,9 +332,45 @@ This SQL code calculates and compares the average conversion rates based on whet
 **Conclusion** - No of subscribers **`increases`** when the ads are run in `preferred language` over random language.
 
 
+----------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------------
 
 
+### 8. Funnel Analysis:
+       Question: Can we identify where users drop off in the conversion funnel based on the data?
 
 
+```sql
+WITH funnel_steps AS(
+	SELECT SUM(CASE WHEN converted = 'TRUE' THEN 1 ELSE 0 END) AS subscribed_users,
+		   SUM(CASE WHEN is_retained = 'TRUE' THEN 1 ELSE 0 END) AS retained_users,
+		   COUNT(*) AS total_users
+	FROM marketing.ca
+	WHERE marketing_channel IS NOT NULL OR converted IS NOT NULL AND is_retained IS NOT NULL)
 
+SELECT 'Viewed Ad' AS steps,
+       COUNT(*) AS users,
+	   ROUND(100.0 * COUNT(*)/COUNT(user_id), 2) AS percentage 
+FROM marketing.ca
+WHERE marketing_channel IS NOT NULL
+
+UNION ALL
+
+SELECT 'Subscribed' AS steps,
+       subscribed_users AS users,
+	   ROUND(100.0 * subscribed_users/total_users, 2) AS percentage
+FROM funnel_steps
+
+UNION ALL
+
+SELECT 'Retained' AS steps,
+       retained_users AS users,
+	   ROUND(100.0 * retained_users/total_users, 2) AS percentage
+FROM funnel_steps;
+```
+
+This SQL code calculates and presents a marketing conversion funnel with three steps: 'Viewed Ad,' 'Subscribed,' and 'Retained.' It calculates the number of users at each step and the percentage of users who progress to the next step. The query first aggregates user data related to these steps, then calculates the percentage for each step. The results provide insights into user progression through the marketing funnel, helping assess the effectiveness of each conversion step in the user journey.
+
+![image](https://github.com/SaibalPatraDS/Market-Analysis-using-PSQL/assets/102281722/151888ce-935f-4932-bd18-de743e540282)
+![image](https://github.com/SaibalPatraDS/Market-Analysis-using-PSQL/assets/102281722/5263a87d-2358-4e9f-b049-d02bc5712971)
 
